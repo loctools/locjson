@@ -150,15 +150,15 @@ Consider the following example, where an imaginary tool, _AwesomeTool_, adds its
 
 # Translation tool behavior
 
-A translation tool must keep the entire structure of a LocJSON file intact. It is only allowed to add, remove, or modify the contents of a `target` array in each unit definition.
+A translation tool must keep the entire structure of a LocJSON file intact. It is only allowed to add, remove, or modify the contents of a `target` array in each unit definition (or only modify the `source` array in case of monolingual use).
 
 A translation tool may read and use other properties, including the ones that start with `x-` (for example, show them in the translation UI as an additional context).
 
-A translation tool must not add any custom properties, reorder units, or reformat the contents of `target` array in any unit unless it modifies a particular translation for that unit.
+A translation tool must not add any custom properties, reorder units, or reformat the contents of `source` or `target` array in any unit unless it modifies a particular translation for that unit.
 
-A translation tool may only _change_ it's own known properties (i.e. the ones that _pre-existed_ in the LocJSON file). This gives an originating application that generates a LocJSON file to control the set of properties it supports, and ensures it can parse the returned file. For example, if LocJSON is generated for an imaginary translation tool `Foo`, and it is known that this tool supports a property `x-foo-fuzzy` (which also has an equivalent in an originating application), then an originating application can include `x-foo-fuzzy` in LocJSON file, and this property will become a part of a contract between an originating application and a translation tool.
+A translation tool may only modify it's own known properties (i.e. the ones that _pre-existed_ in the LocJSON file). This gives an originating application that generates a LocJSON file to control the set of properties it supports, and ensures it can parse the returned file. For example, if LocJSON is generated for an imaginary translation tool `Foo`, and it is known that this tool supports a property `x-foo-fuzzy` (which also has an equivalent in an originating application), then an originating application can include `x-foo-fuzzy` in LocJSON file, and this property will become a part of a contract between an originating application and a translation tool.
 
-In monolingual use, a translation tool may be instructed to put translations directly into `source`. It may be further instructed to remove entire untranslated units from the generated file.
+A translation tool may be explicitly instructed to remove all `properties` keys (both file-level and unit-level) upon generating a localized version of a file. This reduces the file size of all resources and keeps only the minimal data needed (an array of units with keys and translations; see the _Minimal example_ section below). A translation tool should never remove `properties` keys by default.
 
 # Minimal example
 
@@ -180,6 +180,8 @@ Given the optional nature of `properties` blocks, a minimal generated LocJSON fi
 }
 ```
 
+## Bilingual use
+
 In a bilingual use, a localized copy returned by a translation tool would look like this:
 
 ```json
@@ -199,6 +201,8 @@ In a bilingual use, a localized copy returned by a translation tool would look l
     ]
 }
 ```
+
+## Monolingual use
 
 In a monolingual use, a localized copy returned by a translation tool (with translations written directly into `source`) would look like this:
 
