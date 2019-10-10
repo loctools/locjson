@@ -101,10 +101,10 @@ Each unit in this array is a dictionary:
 
 1. `key` [required, string] — a unique (within that file) identifier of the string.
 2. `properties` [optional, dictionary] — properties of a particular unit.
-3. `source` [required/optional<sup>1</sup>, array] — an array of strings that, if concatenated together, comprises a source text to translate. Lines must be split after `\n`. It is also recommended to split long strings into multiple ones, each of 50 symbols or less, including two symbols for the line break symbol (`\n`).
+3. `source` [required<sup>1</sup>, array] — an array of strings that, if concatenated together, comprises a source text to translate. Lines must be split after `\n`. It is also recommended to split long strings into multiple ones, each of 50 symbols or less, including two symbols for the line break symbol (`\n`).
 4. `target` [optional<sup>1</sup>, array] — an array of strings that, if concatenated together, comprises a target (translated) text. The same line splitting rules apply as with `source`.
 
-<sup>1</sup> In bilingual use, it is expected to have both `source` and `target` fields present; in monolingual use, a translation tool may be instructed to put translation into `source` when generating a localized copy of a file.
+<sup>1</sup> In bilingual use, it is expected to have both `source` and `target` fields present, and translation goes into `target` field; in monolingual use, a translation tool must put the translation back into `source` field when generating a localized copy of a file and omit the `target` field.
 
 ### Per-unit `properties` block contents
 
