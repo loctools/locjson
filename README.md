@@ -24,9 +24,9 @@ The following requirements were taken into consideration. The file format should
 
 See the full example at the bottom of the specification.
 
-# Changes
+# Status
 
--   October 10, 2019 — initial version (**DRAFT**)
+-   **DRAFT**. The document is expected to be updated/clarified.
 
 # Terminology
 
