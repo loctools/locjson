@@ -269,3 +269,47 @@ Here's a fuller example of LocJSON file that has comments:
     ]
 }
 ```
+
+# Mapping LocJSON files to languages
+
+LocJSON format intentionally has no built-in notion of _source language_ or _target language_ properties. It is expected that these properties are implied from the folder structure with LocJSON files, or from file names themselves, and are a part of a contract between an originating application and a translation tool.
+
+Consider the following example folder structure:
+
+```
+en/
+    login.locjson
+    main.locjson
+    settings.locjson
+ru/
+    login.locjson
+    main.locjson
+    settings.locjson
+zh-hans/
+    login.locjson
+    main.locjson
+    settings.locjson
+```
+
+Here the files have the same name, but belong to a unique top-level language folder. Now if the agreement is to take English files from `en` folder and put them into corresponding target language folders, the question of source and target language is answered automatically.
+
+Another example:
+
+```
+login/
+    en.locjson
+    ru.locjson
+    zh-hans.locjson
+main/
+    en.locjson
+    ru.locjson
+    zh-hans.locjson
+settings/
+    en.locjson
+    ru.locjson
+    zh-hans.locjson
+```
+
+Here localization files are split by a component, but the language is implied from the file name itself.
+
+Both examples are equally acceptable for both bilingual and monolingual use. In all scenarios, being it a manual or automated localization process, forcing a certain file and folder naming convention to determine source and target languages (as opposed to specifying them as properties within a LocJSON file and relying solely on these properties), is expected to lead to a better discipline and a cleaner localization process overall.
