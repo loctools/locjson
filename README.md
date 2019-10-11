@@ -22,8 +22,6 @@ The following requirements were taken into consideration. The file format should
 
 9. Easy to extend to store extra properties, if needed for external tools.
 
-See the full example at the bottom of the specification.
-
 # Status
 
 -   **DRAFT**. The document is expected to be updated/clarified.
