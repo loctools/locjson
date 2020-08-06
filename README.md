@@ -106,7 +106,7 @@ Each unit in this array is a dictionary:
 
 ### Per-unit `properties` block contents
 
-This dictionary stores information related to the file as a whole:
+This dictionary stores information related to the unit:
 
 ```json
             "properties": {
